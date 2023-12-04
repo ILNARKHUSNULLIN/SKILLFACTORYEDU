@@ -37,6 +37,7 @@ def o_x_game():
             play_area[stroka][stolb] = 'O'
         else:
             print("Поле уже занято, выбери другое")
+            o_playing()
 
 
     def x_playing():
@@ -62,6 +63,7 @@ def o_x_game():
             play_area[stroka][stolb] = 'X'
         else:
             print("Поле уже занято, выбери другое")
+            x_playing()
 
     def check_winner():
         for i in win_init:

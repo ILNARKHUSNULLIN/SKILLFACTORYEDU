@@ -17,8 +17,22 @@ def o_x_game():
     def o_playing():
         print('Ход ноликов:')
         print('Впиши поле, которое хочешь занять. Сначала введи строку, потом столбик')
-        stroka = int(input())
-        stolb = int(input())
+        while True:
+            try:
+                stroka = int(input("Введите число: "))
+                stolb = int(input("Введите число: "))
+                break
+            except ValueError:
+                print("Некорректный ввод. Введите число.")
+        while stroka not in range(1, 4) and stolb not in range(1, 4):
+            print('Сожалеем, Вы ввели некорректную клетку')
+            while True:
+                try:
+                    stroka = int(input("Введите число: "))
+                    stolb = int(input("Введите число: "))
+                    break
+                except ValueError:
+                    print("Некорректный ввод. Введите число.")
         if play_area[stroka][stolb] == '-':
             play_area[stroka][stolb] = 'O'
         else:
@@ -28,8 +42,22 @@ def o_x_game():
     def x_playing():
         print('Ход крестиков:')
         print('Впиши поле, которое хочешь занять. Сначала введи строку, потом столбик')
-        stroka = int(input())
-        stolb = int(input())
+        while True:
+            try:
+                stroka = int(input("Введите число: "))
+                stolb = int(input("Введите число: "))
+                break
+            except ValueError:
+                print("Некорректный ввод. Введите число.")
+        while stroka not in range(1, 4) and stolb not in range(1, 4):
+            print('Сожалеем, Вы ввели некорректную клетку')
+            while True:
+                try:
+                    stroka = int(input("Введите число: "))
+                    stolb = int(input("Введите число: "))
+                    break
+                except ValueError:
+                    print("Некорректный ввод. Введите число.")
         if play_area[stroka][stolb] == '-':
             play_area[stroka][stolb] = 'X'
         else:
@@ -43,6 +71,11 @@ def o_x_game():
             if play_area[a[0]][a[1]] == play_area[b[0]][b[1]] and play_area[a[0]][a[1]] == play_area[c[0]][c[1]] and play_area[a[0]][a[1]] != '-':
                 print("Победитель:", play_area[a[0]][a[1]])
                 return True
+
+        if '-' not in play_area[1] and '-' not in play_area[2] and '-' not in play_area[3]:
+            print('Игра завершена. Победителя нет.')
+            return True
+
         return False
 
     control_num = 0
@@ -52,6 +85,7 @@ def o_x_game():
             print(*i)
         if check_winner() is True:
             break
+
         x_playing()
         for i in play_area:
             print(*i)
